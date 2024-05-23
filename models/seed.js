@@ -1,6 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const Product = require("./product");
+const Category = require("./category");
 
 mongoose.connect(process.env.MONGODB_CONN);
 
@@ -14,7 +15,14 @@ async function seed() {
     inStock: 10,
   });
 
-  await myApp.save();
+  await myProduct.save();
+
+  const myCategory = new Category({
+    name: "Indica",
+    description: "In Da Couch",
+  });
+
+  await myCategory.save();
 
   console.log("Mongoose db has been seeded");
   mongoose.disconnect();

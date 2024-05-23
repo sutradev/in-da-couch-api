@@ -7,7 +7,14 @@ const {
   postProduct,
   deleteProduct,
   updateProduct,
-} = require("./handlers");
+} = require("./handlers/productHandlers");
+
+const {
+  readCategories,
+  postCategory,
+  deleteCategory,
+  updateCategory,
+} = require("./handlers/categoryHandlers");
 
 const app = express();
 
@@ -28,5 +35,10 @@ app.get("/products", readProducts);
 app.post("/products", postProduct);
 app.delete("/products/:id", deleteProduct);
 app.put("/products/:id", updateProduct);
+
+app.get("/categories", readCategories);
+app.post("/categories", postCategory);
+app.delete("/categories/:id", deleteCategory);
+app.put("/categories/:id", updateCategory);
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));

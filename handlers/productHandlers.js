@@ -1,4 +1,4 @@
-const Product = require("./models/product");
+const Product = require("../models/product");
 
 async function readProducts(req, res) {
   try {
@@ -11,7 +11,7 @@ async function readProducts(req, res) {
 }
 
 async function postProduct(request, response) {
-  const { name: category, description, image, price, inStock } = request.body;
+  const { name, category, description, image, price, inStock } = request.body;
   try {
     const newProduct = await Product.create({
       name,
@@ -50,7 +50,7 @@ async function updateProduct(request, response) {
     response.status(200).send("successfully updated");
   } catch (error) {
     console.error(error);
-    response.status(500).send(`Unable to update note with id ${id}`);
+    response.status(500).send(`Unable to update product with id ${id}`);
   }
 }
 
